@@ -39,7 +39,7 @@ echo # Run started at:- "
 date
 
 # Run
-srun python codebert_baseline_clean.py
+srun python codet5_basline.py
 
 echo "Run completed at:- "
 date

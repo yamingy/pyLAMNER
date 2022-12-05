@@ -20,14 +20,14 @@ def epoch_time(start_time, end_time):
   elapsed_secs = int(elapsed_time - (elapsed_mins * 60))
   return elapsed_mins, elapsed_secs
 
-def write_files(p,t,epoch, test=False, Warmup=False):
-  predicted_file_name = "predictions/predictions.out-"+str(epoch)+".txt"
-  ref_file_name = "predictions/trgs.given-"+str(epoch)+".txt"
+def write_files(p, t, epoch, output_dir='predictions/', test=False, Warmup=False):
+  predicted_file_name = f"{output_dir}predictions.out-"+str(epoch)+".txt"
+  ref_file_name = f"{output_dir}trgs.given-"+str(epoch)+".txt"
   
   if test:
 
-    predicted_file_name = "predictions/test-predictions.out.txt"
-    ref_file_name = "predictions/test-trgs.given.txt"
+    predicted_file_name = f"{output_dir}test-predictions.out.txt"
+    ref_file_name = f"{output_dir}test-trgs.given.txt"
     with open(predicted_file_name, "w", encoding="utf-8") as f:
       for i in p:
         f.write(i+"\n")
@@ -37,8 +37,8 @@ def write_files(p,t,epoch, test=False, Warmup=False):
         f.write(i+"\n")
 
   elif Warmup:
-    predicted_file_name = "predictions/warm-predictions.out-"+str(epoch)+".txt"
-    ref_file_name = "predictions/warm-trgs.given-"+str(epoch)+".txt"
+    predicted_file_name = f"{output_dir}warm-predictions.out-"+str(epoch)+".txt"
+    ref_file_name = f"{output_dir}warm-trgs.given-"+str(epoch)+".txt"
     with open(predicted_file_name, "w", encoding="utf-8") as f:
       for i in p:
         f.write(i+"\n")
@@ -56,25 +56,22 @@ def write_files(p,t,epoch, test=False, Warmup=False):
     with open(ref_file_name, "w", encoding="utf-8") as f:
       for i in t:
         f.write(i+"\n")
-  
-  return
 
-
-def calculate_rouge(epoch,test=False, Warmup=False):
+def calculate_rouge(epoch,output_dir='predictions/', test=False, Warmup=False):
 
   if test:
 
-    predicted_file_name = "predictions/test-predictions.out.txt"
-    ref_file_name = "predictions/test-trgs.given.txt"
+    predicted_file_name = f"{output_dir}test-predictions.out.txt"
+    ref_file_name = f"{output_dir}test-trgs.given.txt"
     
     
   elif Warmup:
-    predicted_file_name = "predictions/warm-predictions.out-"+str(epoch)+".txt"
-    ref_file_name = "predictions/warm-trgs.given-"+str(epoch)+".txt"
+    predicted_file_name = f"{output_dir}warm-predictions.out-"+str(epoch)+".txt"
+    ref_file_name = f"{output_dir}warm-trgs.given-"+str(epoch)+".txt"
   
   else:
-    predicted_file_name = "predictions/predictions.out-"+str(epoch)+".txt"
-    ref_file_name = "predictions/trgs.given-"+str(epoch)+".txt"
+    predicted_file_name = f"{output_dir}predictions.out-"+str(epoch)+".txt"
+    ref_file_name = f"{output_dir}trgs.given-"+str(epoch)+".txt"
 
   
    
