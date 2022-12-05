@@ -13,7 +13,7 @@
 #SBATCH --ntasks-per-node 1
 #SBATCH --open-mode append
 #SBATCH --partition healthyml
-#SBATCH --time=8:00:00
+#SBATCH --time=24:00:00
 
 ## User python environment
 export HOME=/data/healthy-ml/scratch/mingy

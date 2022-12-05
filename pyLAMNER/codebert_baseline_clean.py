@@ -422,7 +422,7 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
 #if __name__ == '__main__':
 #  main()
 
-run_seq2seq(batch_size = 16, embedding_size=768, epochs = 5)
+run_seq2seq(batch_size = 16, embedding_size=768, epochs = 10)
 
 """# Evaluation"""
 
