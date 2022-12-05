@@ -34,6 +34,21 @@ import os
 tokenizer = AutoTokenizer.from_pretrained("huggingface/CodeBERTa-small-v1")
 model = AutoModel.from_pretrained("huggingface/CodeBERTa-small-v1")
 
+with open("data_seq2seq/vocab.json", 'r') as f:
+  with open("data_seq2seq/vocab.txt", "w") as fc:
+    vocab = json.load(f)
+    l = len(vocab)
+    c = 1
+    for word in vocab:
+      tokens_ids = [vocab[word]]
+      embed = model(torch.tensor(tokens_ids)[None,:])[0][0][0].tolist()
+      fc.write(" ".join([word] + [str(j) for j in embed]))
+      if c < l :
+        fc.write("\n")
+      c += 1
+                                 
+vocab_size = len(vocab)
+
 CLS_INDEX = tokenizer.convert_tokens_to_ids(tokenizer.cls_token)
 EOS_INDEX = tokenizer.convert_tokens_to_ids(tokenizer.eos_token)
 PAD_INDEX = tokenizer.convert_tokens_to_ids(tokenizer.pad_token)
@@ -249,7 +264,7 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
   early_stop = False
   cur_lr = learning_rate
   num_of_epochs_not_improved = 0
-  path = "data_seq2seq"
+  path = "data_seq2seq/"
   output_dir = "predictions/"
 
 
