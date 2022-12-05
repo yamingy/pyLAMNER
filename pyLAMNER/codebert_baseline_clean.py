@@ -34,20 +34,20 @@ import os
 tokenizer = AutoTokenizer.from_pretrained("huggingface/CodeBERTa-small-v1")
 model = AutoModel.from_pretrained("huggingface/CodeBERTa-small-v1")
 
-with open("data_seq2seq/vocab.json", 'r') as f:
-  with open("data_seq2seq/vocab.txt", "w") as fc:
-    vocab = json.load(f)
-    l = len(vocab)
-    c = 1
-    for word in vocab:
-      tokens_ids = [vocab[word]]
-      embed = model(torch.tensor(tokens_ids)[None,:])[0][0][0].tolist()
-      fc.write(" ".join([word] + [str(j) for j in embed]))
-      if c < l :
-        fc.write("\n")
-      c += 1
+# with open("data_seq2seq/vocab.json", 'r') as f:
+#   with open("data_seq2seq/vocab.txt", "w") as fc:
+#     V = json.load(f)
+#     l = len(V)
+#     c = 1
+#     for word in V:
+#       tokens_ids = [V[word]]
+#       embed = model(torch.tensor(tokens_ids)[None,:])[0][0][0].tolist()
+#       fc.write(" ".join([word] + [str(j) for j in embed]))
+#       if c < l :
+#         fc.write("\n")
+#       c += 1
                                  
-vocab_size = len(vocab)
+# vocab_size = len(V)
 
 CLS_INDEX = tokenizer.convert_tokens_to_ids(tokenizer.cls_token)
 EOS_INDEX = tokenizer.convert_tokens_to_ids(tokenizer.eos_token)
