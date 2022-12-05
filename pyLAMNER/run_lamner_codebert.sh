@@ -1,9 +1,18 @@
 #!/bin/bash
 
-#SBATCH --job-name=lamner_codebert
-#SBATCH --partition=submit-gpu
-#SBATCH --gres=gpu:2
-#SBATCH --cpus-per-gpu=4
+#SBATCH -J lamner_codebert
+#SBATCH -o lamner_codebert%j.out
+#SBATCH -e lamner_codebert%j.err
+#SBATCH --mail-user=ming1022@mit.edu
+#SBATCH --mail-type=ALL
+#SBATCH --cpus-per-task 12
+#SBATCH --exclude mocha
+#SBATCH --gres gpu:2
+#SBATCH --mem 50GB
+#SBATCH --nodes 1
+#SBATCH --ntasks-per-node 1
+#SBATCH --open-mode append
+#SBATCH --partition healthyml
 #SBATCH --time=8:00:00
 
 ## User python environment
