@@ -5,9 +5,12 @@
 #SBATCH -e lamner_codebert%j.err
 #SBATCH --mail-user=ming1022@mit.edu
 #SBATCH --mail-type=ALL
-#SBATCH --gres=gpu:2
-#SBATCH --mem-per-cpu=2GB
-#SBATCH --cpus-per-gpu=4
+#SBATCH --cpus-per-task 12
+#SBATCH --exclude mocha
+#SBATCH --gres gpu:2
+#SBATCH --mem 50GB
+#SBATCH --nodes 1
+#SBATCH --ntasks-per-node 20
 #SBATCH --open-mode append
 #SBATCH --partition healthyml
 #SBATCH --time=24:00:00
