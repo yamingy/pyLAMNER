@@ -18,7 +18,7 @@
 ## User python environment
 export HOME=/data/healthy-ml/scratch/mingy
 eval "$(/data/healthy-ml/scratch/mingy/anaconda3/bin/conda shell.bash hook)"
-source activate $HOME/anaconda3/envs/pylamner
+conda activate $HOME/anaconda3/envs/pylamner
 export PYTHON=$HOME/anaconda3/envs/pylamner/bin/python
 
 export CONFIG_DIR=/data/healthy-ml/scratch/mingy/pyLAMNER/pyLAMNER
