@@ -1,0 +1,87 @@
+ 
+ Nodelist:=  latte
+ Number of nodes:=  1
+ GPUs per node:=  0,1
+ Ntasks per node:=  1
+
+Tue Dec  6 00:11:02 EST 2022
+1.7.0
+Is available: True
+Current Devices: 0
+No. of GPUs: 2
+preparing data....
+preparing vocab....
+preparing model....
+Setting Embeddings
+Maximum Input length is 6766... Maximum Output Length is 564
+Encoder Vocab Size 50004... Decoder Vocab Size 26732
+Batch Size:64
+Embedding Dimension:768
+The model has 129343084 trainable parameters
+
+Training Started.....
+Epoch: 1 | Time: 40m31s
+	 Learning Rate: 0.01
+	 Train Loss: 6.86 | Train PPL: 953.12
+	 Val. Loss: 6.67 |  Val. PPL: 788.84
+	 Current Val. Rouge: 11.85 |  Best Rouge 11.85 |  Best Epoch 1
+	 Number of Epochs of no Improvement 0
+Epoch: 2 | Time: 40m22s
+	 Learning Rate: 0.01
+	 Train Loss: 6.41 | Train PPL: 605.31
+	 Val. Loss: 6.59 |  Val. PPL: 729.74
+	 Current Val. Rouge: 13.96 |  Best Rouge 13.96 |  Best Epoch 2
+	 Number of Epochs of no Improvement 0
+Epoch: 3 | Time: 40m42s
+	 Learning Rate: 0.01
+	 Train Loss: 6.34 | Train PPL: 565.99
+	 Val. Loss: 6.58 |  Val. PPL: 723.46
+	 Current Val. Rouge: 13.91 |  Best Rouge 13.96 |  Best Epoch 3
+	 Number of Epochs of no Improvement 0
+Epoch: 4 | Time: 40m51s
+	 Learning Rate: 0.01
+	 Train Loss: 6.3 | Train PPL: 545.33
+	 Val. Loss: 6.56 |  Val. PPL: 707.9
+	 Current Val. Rouge: 13.03 |  Best Rouge 13.96 |  Best Epoch 4
+	 Number of Epochs of no Improvement 0
+Epoch: 5 | Time: 40m54s
+	 Learning Rate: 0.01
+	 Train Loss: 6.28 | Train PPL: 533.02
+	 Val. Loss: 6.56 |  Val. PPL: 708.58
+	 Current Val. Rouge: 14.02 |  Best Rouge 14.02 |  Best Epoch 4
+	 Number of Epochs of no Improvement 1
+Epoch: 6 | Time: 40m45s
+	 Learning Rate: 0.01
+	 Train Loss: 6.26 | Train PPL: 522.83
+	 Val. Loss: 6.55 |  Val. PPL: 699.61
+	 Current Val. Rouge: 13.07 |  Best Rouge 14.02 |  Best Epoch 6
+	 Number of Epochs of no Improvement 0
+Epoch: 7 | Time: 40m24s
+	 Learning Rate: 0.01
+	 Train Loss: 6.25 | Train PPL: 516.62
+	 Val. Loss: 6.55 |  Val. PPL: 697.31
+	 Current Val. Rouge: 12.16 |  Best Rouge 14.02 |  Best Epoch 7
+	 Number of Epochs of no Improvement 0
+Epoch: 8 | Time: 40m37s
+	 Learning Rate: 0.01
+	 Train Loss: 6.23 | Train PPL: 508.24
+	 Val. Loss: 6.55 |  Val. PPL: 701.4
+	 Current Val. Rouge: 13.26 |  Best Rouge 14.02 |  Best Epoch 7
+	 Number of Epochs of no Improvement 1
+Epoch: 9 | Time: 40m14s
+	 Learning Rate: 0.01
+	 Train Loss: 6.21 | Train PPL: 498.2
+	 Val. Loss: 6.55 |  Val. PPL: 702.69
+	 Current Val. Rouge: 11.92 |  Best Rouge 14.02 |  Best Epoch 7
+	 Number of Epochs of no Improvement 2
+Epoch: 10 | Time: 40m41s
+	 Learning Rate: 0.01
+	 Train Loss: 6.19 | Train PPL: 485.52
+	 Val. Loss: 6.53 |  Val. PPL: 684.52
+	 Current Val. Rouge: 13.52 |  Best Rouge 14.02 |  Best Epoch 10
+	 Number of Epochs of no Improvement 0
+Test Loss: 6.56 | Test PPL: 708.5
+  bleu-4 = 9.96 
+  ********************
+Run completed at:- 
+Tue Dec  6 07:00:35 EST 2022

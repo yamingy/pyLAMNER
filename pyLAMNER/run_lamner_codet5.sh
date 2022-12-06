@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J codet5_lamner
-#SBATCH -o codet5_lamner%j.out
-#SBATCH -e codet5_lamner%j.err
+#SBATCH -J codet5
+#SBATCH -o codet5_1e-3_20epochs%j.out
+#SBATCH -e codet5_1e-3_20epochs%j.err
 #SBATCH --mail-user=ming1022@mit.edu
 #SBATCH --mail-type=ALL
 #SBATCH --cpus-per-task 12

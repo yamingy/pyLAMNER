@@ -434,5 +434,5 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
   print("  "+"*"*20) 
   
 
-run_seq2seq(batch_size = 32, embedding_size=512, epochs = 10, learning_rate = 0.01)
+run_seq2seq(batch_size = 64, embedding_size=512, epochs = 20, learning_rate = 0.001)
 

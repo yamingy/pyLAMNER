@@ -11,7 +11,7 @@ class Encoder(nn.Module):
       
   def forward(self, src, src_len):
     embedded = self.dropout(self.embedding(src))
-    packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, src_len)        
+    packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, src_len.cpu())        
     packed_outputs, hidden = self.rnn(packed_embedded)
     outputs, _ = nn.utils.rnn.pad_packed_sequence(packed_outputs) 
     hidden = torch.tanh(self.fc(torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim = 1)))
