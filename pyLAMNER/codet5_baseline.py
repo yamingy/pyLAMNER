@@ -21,12 +21,11 @@ import math
 import time
 from torchtext import data
 import torchtext.vocab as vocab
-from lamner_utils.utils import set_seed, init_weights, print_log, get_max_lens, count_parameters, calculate_rouge, write_files, epoch_time
+from lamner_utils.utils import set_seed, init_weights, print_log, get_max_lens, count_parameters, calculate_rouge, write_files, epoch_time, calculate_bleu
 from src.attention import Attention
 from src.encoder import Encoder
 from src.decoder import Decoder
 from six.moves import map
-import bleu
 import random
 from six.moves import map
 from tqdm import tqdm
@@ -241,46 +240,13 @@ def translate_sentence_reps(sentence, src_field, trg_field, model, device, max_l
   
   return trg_tokens[1:], attentions[:len(trg_tokens)-1]
 
-def read_examples(filename):
-    """Read examples from filename."""
-    examples=[]
-    with open(filename,encoding="utf-8") as f:
-        for idx, line in enumerate(f):
-            line=line.strip()
-            js=json.loads(line)
-            if 'idx' not in js:
-                js['idx']=idx
-            code=' '.join(js['code_tokens']).replace('\n',' ')
-            code=' '.join(code.strip().split())
-            nl=' '.join(js['docstring_tokens']).replace('\n','')
-            nl=' '.join(nl.strip().split())            
-            examples.append(
-                Example(
-                        idx = idx,
-                        source=code,
-                        target = nl,
-                        ) 
-            )
-    return examples
-  
-class Example(object):
-  """A single training/test example."""
-  def __init__(self,
-                idx,
-                source,
-                target,
-                ):
-      self.idx = idx
-      self.source = source
-      self.target = target
-
 def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, dropout = 0.5, epochs = 10, static = False, learning_rate = 0.1, infer = False):
   set_seed()
   CLIP = 1
   make_weights_static = static
   best_valid_loss = float('inf')
-  cur_rouge = -float('inf')
-  best_rouge = -float('inf')
+  cur_bleu = -float('inf')
+  best_bleu = -float('inf')
   best_epoch = -1
   MIN_LR = 0.0000001
   MAX_VOCAB_SIZE = 50_000
@@ -288,7 +254,7 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
   cur_lr = learning_rate
   num_of_epochs_not_improved = 0
   path = "data_seq2seq/"
-  output_dir = "predictions/codet5"
+  output_dir = "predictions/codet5/"
 
 
   #-------------------- OUR CODE---------------------#
@@ -385,8 +351,8 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
       train_loss = train(model, train_iterator, optimizer, criterion, CLIP)
       valid_loss = evaluate(model, valid_iterator, criterion)
       p, t = get_preds(valid_data, SRC, TRG, model, device)
-      write_files(p,t,epoch+1)
-      cur_rouge = calculate_rouge(epoch+1)
+      write_files(p,t,epoch+1, output_dir=output_dir)
+      cur_bleu = calculate_bleu(epoch+1,data_path=path,output_dir=output_dir, p=p)
       torch.save(model.state_dict(), f'{output_dir}seq2seq-'+str(epoch+1)+'.pt')
   
       if best_valid_loss>valid_loss:
@@ -396,8 +362,8 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
       else:
         num_of_epochs_not_improved = num_of_epochs_not_improved + 1 
       
-      if cur_rouge > best_rouge:
-        best_rouge = cur_rouge
+      if cur_bleu > best_bleu:
+        best_bleu = cur_bleu
         torch.save(model.state_dict(), f'{output_dir}best-seq2seq.pt')
       
       if make_weights_static==True:
@@ -411,27 +377,14 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
       print('\t Learning Rate: ' + str(optimizer.param_groups[0]['lr']))
       print('\t Train Loss: ' + str(round(train_loss, 2)) + ' | Train PPL: ' + str(round(math.exp(train_loss), 2)))
       print('\t Val. Loss: ' + str(round(valid_loss, 2 )) + ' |  Val. PPL: '+ str(round(math.exp(valid_loss), 2)))
-      print('\t Current Val. Rouge: ' + str(cur_rouge) + ' |  Best Rouge '+ str(best_rouge) + ' |  Best Epoch '+ str(best_epoch))
+      print('\t Current Val. bleu: ' + str(cur_bleu) + ' |  Best bleu '+ str(best_bleu) + ' |  Best Epoch '+ str(best_epoch))
       print('\t Number of Epochs of no Improvement '+ str(num_of_epochs_not_improved))
 
   model.load_state_dict(torch.load(f'{output_dir}best-seq2seq.pt'))
   test_loss = evaluate(model, test_iterator, criterion)
   print('Test Loss: ' + str(round(test_loss, 2)) + ' | Test PPL: ' + str(round(math.exp(test_loss), 2)))
   p, t = get_preds(test_data, SRC, TRG, model, device)
-  write_files(p,t,epoch=0, test=True, output_dir=output_dir)
-  
-  eval_examples = read_examples(f'{path}test.jsonl')
-  predictions = []
-  with open(os.path.join(output_dir,"test.output"),'w') as f, open(os.path.join(output_dir,"test.gold"),'w') as f1:
-      for ref,gold in zip(p,eval_examples):
-          predictions.append(str(gold.idx)+'\t'+ref)
-          f.write(str(gold.idx)+'\t'+ref+'\n')
-          f1.write(str(gold.idx)+'\t'+gold.target+'\n')     
-
-  (goldMap, predictionMap) = bleu.computeMaps(predictions, os.path.join(output_dir, "test.gold")) 
-  dev_bleu=round(bleu.bleuFromMaps(goldMap, predictionMap)[0],2)
-  print("  %s = %s "%("bleu-4",str(dev_bleu)))
-  print("  "+"*"*20) 
+  calculate_bleu(-1, data_path=path,output_dir=output_dir, p=p, test=True)
   
 
 run_seq2seq(batch_size = 64, embedding_size=512, epochs = 20, learning_rate = 0.001)

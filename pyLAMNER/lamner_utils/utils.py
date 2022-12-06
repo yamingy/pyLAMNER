@@ -3,6 +3,8 @@ from rouge import FilesRouge
 import torch.nn as nn
 import numpy as np
 import random
+import bleu
+import json
 
 def init_weights(m):
   for name, param in m.named_parameters():
@@ -56,6 +58,64 @@ def write_files(p, t, epoch, output_dir='predictions/', test=False, Warmup=False
     with open(ref_file_name, "w", encoding="utf-8") as f:
       for i in t:
         f.write(i+"\n")
+
+class Example(object):
+    """A single training/test example."""
+    def __init__(self,
+                 idx,
+                 source,
+                 target,
+                 ):
+        self.idx = idx
+        self.source = source
+        self.target = target
+
+def read_examples(filename):
+    """Read examples from filename."""
+    examples=[]
+    with open(filename,encoding="utf-8") as f:
+        for idx, line in enumerate(f):
+            line=line.strip()
+            js=json.loads(line)
+            if 'idx' not in js:
+                js['idx']=idx
+            code=' '.join(js['code_tokens']).replace('\n',' ')
+            code=' '.join(code.strip().split())
+            nl=' '.join(js['docstring_tokens']).replace('\n','')
+            nl=' '.join(nl.strip().split())            
+            examples.append(
+                Example(
+                        idx = idx,
+                        source=code,
+                        target = nl,
+                        ) 
+            )
+    return examples
+
+def calculate_bleu(epoch,data_path,output_dir, p, test=False):
+  if test:
+
+    predicted_file_name = f"{output_dir}test.out"
+    ref_file_name = f"{output_dir}test.gold"
+    eval_examples = read_examples(f'{data_path}test.jsonl')
+  
+  else:
+    predicted_file_name = f"{output_dir}val.out"
+    ref_file_name = f"{output_dir}val.gold"
+    eval_examples = read_examples(f'{data_path}valid.jsonl')
+
+  predictions = []
+  with open(predicted_file_name,'w') as f, open(ref_file_name,'w') as f1:
+      for ref,gold in zip(p,eval_examples):
+          predictions.append(str(gold.idx)+'\t'+ref)
+          f.write(str(gold.idx)+'\t'+ref+'\n')
+          f1.write(str(gold.idx)+'\t'+gold.target+'\n')     
+
+  (goldMap, predictionMap) = bleu.computeMaps(predictions, ref_file_name) 
+  dev_bleu=round(bleu.bleuFromMaps(goldMap, predictionMap)[0],2)
+  print("  %s = %s "%("bleu-4",str(dev_bleu)))
+  print("  "+"*"*20) 
+  return dev_bleu
 
 def calculate_rouge(epoch,output_dir='predictions/', test=False, Warmup=False):
 
