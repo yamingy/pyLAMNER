@@ -38,26 +38,26 @@ This part is mainly for preparing the vocab from pretrained codeBert model and p
 tokenizer = RobertaTokenizer.from_pretrained('Salesforce/codet5-small')
 model = T5ForConditionalGeneration.from_pretrained('Salesforce/codet5-small')
 
-text = "def greet(user): print(f'hello <extra_id_0>!')"
-inputids = tokenizer(text, return_tensors="pt").input_ids
-model.encoder.embed_tokens(inputids)
+#text = "def greet(user): print(f'hello <extra_id_0>!')"
+#inputids = tokenizer(text, return_tensors="pt").input_ids
+#model.encoder.embed_tokens(inputids)
 
-len(model.encoder.embed_tokens(torch.tensor([1]))[0].tolist())
+# len(model.encoder.embed_tokens(torch.tensor([1]))[0].tolist())
 
-with open("data_seq2seq/codeT5_vocab.json", 'r') as f:
-  with open("data_seq2seq/codeT5_vocab.txt", "w") as fc:
-    vocab = json.load(f)
-    l = len(vocab)
-    c = 1
-    for word in vocab:
-      tokens_ids = [vocab[word]]
-      embed = model.encoder.embed_tokens(torch.tensor([1]))[0].tolist()
-      fc.write(" ".join([word] + [str(j) for j in embed]))
-      if c < l :
-        fc.write("\n")
-      c += 1
+# with open("data_seq2seq/codeT5_vocab.json", 'r') as f:
+#  with open("data_seq2seq/codeT5_vocab.txt", "w") as fc:
+#    V = json.load(f)
+#    l = len(V)
+#    c = 1
+#    for word in V:
+#      tokens_ids = [V[word]]
+#      embed = model.encoder.embed_tokens(torch.tensor([1]))[0].tolist()
+#      fc.write(" ".join([word] + [str(j) for j in embed]))
+#      if c < l :
+#        fc.write("\n")
+#      c += 1
                                  
-vocab_size = len(vocab)
+# vocab_size = len(V)
 
 """# CodeT5 seq2seq
 where training starts
@@ -424,5 +424,5 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
   print("  "+"*"*20) 
   
 
-run_seq2seq(batch_size = 16, embedding_size=512, epochs = 10, learning_rate = 0.01)
+run_seq2seq(batch_size = 32, embedding_size=512, epochs = 10, learning_rate = 0.01)
 

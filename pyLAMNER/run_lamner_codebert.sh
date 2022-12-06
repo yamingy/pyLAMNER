@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J lamner_codebert
-#SBATCH -o lamner_codebert%j.out
-#SBATCH -e lamner_codebert%j.err
+#SBATCH -J codebert
+#SBATCH -o codebert%j.out
+#SBATCH -e codebert%j.err
 #SBATCH --mail-user=ming1022@mit.edu
 #SBATCH --mail-type=ALL
 #SBATCH --cpus-per-task 12
@@ -39,7 +39,7 @@ echo # Run started at:- "
 date
 
 # Run
-srun python codebert_baseline_clean.py
+srun python gpu.py && python codebert_baseline_clean.py
 
 echo "Run completed at:- "
 date
