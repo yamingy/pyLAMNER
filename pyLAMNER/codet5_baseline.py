@@ -31,6 +31,16 @@ import random
 from six.moves import map
 from tqdm import tqdm
 
+print(torch.__version__)
+print(f"Is available: {torch.cuda.is_available()}")
+
+try:
+    print(f"Current Devices: {torch.cuda.current_device()}")
+except :
+    print('Current Devices: Torch is not compiled for GPU or No GPU')
+
+print(f"No. of GPUs: {torch.cuda.device_count()}")
+
 """# CodeT5 Preparation
 This part is mainly for preparing the vocab from pretrained codeBert model and pass it to the LAMNER framework.  **You can skip this part when training the model** **bold text**
 """

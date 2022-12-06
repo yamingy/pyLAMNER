@@ -39,7 +39,7 @@ echo # Run started at:- "
 date
 
 # Run
-srun python gpu.py && python codet5_baseline.py
+srun python codet5_baseline.py
 
 echo "Run completed at:- "
 date
