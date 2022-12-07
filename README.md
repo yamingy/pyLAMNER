@@ -1,2 +1,2 @@
-# lamner-c
-Code comment generation for Java
+# pyLAMNER
+Code comment generation for python following the work of LAMNER
