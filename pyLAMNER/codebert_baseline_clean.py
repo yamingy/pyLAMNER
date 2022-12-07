@@ -261,14 +261,14 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
               eos_token = tokenizer.eos_token, 
               lower = False, 
               #include_lengths = True,
-              fix_length = 256,
+              fix_length = 300,
               pad_token=tokenizer.pad_token, 
               unk_token=tokenizer.unk_token)
   TRG = Field(
             init_token = tokenizer.cls_token, 
             eos_token = tokenizer.eos_token,
             lower = False,
-            fix_length = 128,
+            fix_length = 30,
             pad_token=tokenizer.pad_token, 
             unk_token=tokenizer.unk_token)
   
@@ -395,5 +395,5 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
 #if __name__ == '__main__':
 #  main()
 
-run_seq2seq(batch_size = 64, embedding_size=768, epochs = 10)
+run_seq2seq(batch_size = 128, embedding_size=768, epochs = 100)
 

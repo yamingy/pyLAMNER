@@ -1,0 +1,187 @@
+ 
+ Nodelist:=  frappe
+ Number of nodes:=  1
+ GPUs per node:=  0,1
+ Ntasks per node:=  1
+
+Tue Dec  6 14:08:03 EST 2022
+1.7.0
+Is available: True
+Current Devices: 0
+No. of GPUs: 2
+preparing data....
+preparing vocab....
+preparing model....
+Setting Embeddings
+Maximum Input length is 12894... Maximum Output Length is 1110
+Encoder Vocab Size 23039... Decoder Vocab Size 15812
+Batch Size:64
+Embedding Dimension:512
+The model has 59903428 trainable parameters
+
+Training Started.....
+  bleu-4 = 6.17 
+  ********************
+Epoch: 1 | Time: 4m12s
+	 Learning Rate: 0.01
+	 Train Loss: 4.17 | Train PPL: 64.47
+	 Val. Loss: 4.81 |  Val. PPL: 122.9
+	 Current Val. bleu: 6.17 |  Best bleu 6.17 |  Best Epoch 1
+	 Number of Epochs of no Improvement 0
+  bleu-4 = 6.29 
+  ********************
+Epoch: 2 | Time: 4m11s
+	 Learning Rate: 0.01
+	 Train Loss: 3.6 | Train PPL: 36.67
+	 Val. Loss: 4.95 |  Val. PPL: 141.79
+	 Current Val. bleu: 6.29 |  Best bleu 6.29 |  Best Epoch 1
+	 Number of Epochs of no Improvement 1
+  bleu-4 = 6.39 
+  ********************
+Epoch: 3 | Time: 4m14s
+	 Learning Rate: 0.01
+	 Train Loss: 3.59 | Train PPL: 36.29
+	 Val. Loss: 5.1 |  Val. PPL: 164.58
+	 Current Val. bleu: 6.39 |  Best bleu 6.39 |  Best Epoch 1
+	 Number of Epochs of no Improvement 2
+  bleu-4 = 6.38 
+  ********************
+Epoch: 4 | Time: 4m10s
+	 Learning Rate: 0.01
+	 Train Loss: 3.52 | Train PPL: 33.7
+	 Val. Loss: 4.84 |  Val. PPL: 126.52
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 1
+	 Number of Epochs of no Improvement 3
+  bleu-4 = 6.38 
+  ********************
+Epoch: 5 | Time: 4m9s
+	 Learning Rate: 0.01
+	 Train Loss: 3.52 | Train PPL: 33.69
+	 Val. Loss: 5.38 |  Val. PPL: 217.44
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 1
+	 Number of Epochs of no Improvement 4
+  bleu-4 = 6.38 
+  ********************
+Epoch: 6 | Time: 4m10s
+	 Learning Rate: 0.01
+	 Train Loss: 3.46 | Train PPL: 31.85
+	 Val. Loss: 4.75 |  Val. PPL: 115.48
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 0
+  bleu-4 = 6.38 
+  ********************
+Epoch: 7 | Time: 4m10s
+	 Learning Rate: 0.01
+	 Train Loss: 3.43 | Train PPL: 30.98
+	 Val. Loss: 4.93 |  Val. PPL: 138.43
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 1
+  bleu-4 = 6.38 
+  ********************
+Epoch: 8 | Time: 4m9s
+	 Learning Rate: 0.01
+	 Train Loss: 3.42 | Train PPL: 30.53
+	 Val. Loss: 5.96 |  Val. PPL: 386.32
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 2
+  bleu-4 = 6.38 
+  ********************
+Epoch: 9 | Time: 4m10s
+	 Learning Rate: 0.01
+	 Train Loss: 3.41 | Train PPL: 30.15
+	 Val. Loss: 6.13 |  Val. PPL: 458.87
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 3
+  bleu-4 = 0.52 
+  ********************
+Epoch: 10 | Time: 4m8s
+	 Learning Rate: 0.01
+	 Train Loss: 3.38 | Train PPL: 29.4
+	 Val. Loss: 4.89 |  Val. PPL: 132.41
+	 Current Val. bleu: 0.52 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 4
+  bleu-4 = 6.38 
+  ********************
+Epoch: 11 | Time: 4m12s
+	 Learning Rate: 0.01
+	 Train Loss: 3.38 | Train PPL: 29.28
+	 Val. Loss: 5.16 |  Val. PPL: 174.43
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 5
+  bleu-4 = 6.38 
+  ********************
+Epoch: 12 | Time: 4m10s
+	 Learning Rate: 0.01
+	 Train Loss: 3.39 | Train PPL: 29.53
+	 Val. Loss: 5.21 |  Val. PPL: 182.9
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 6
+  bleu-4 = 1.59 
+  ********************
+Epoch: 13 | Time: 4m3s
+	 Learning Rate: 0.01
+	 Train Loss: 3.34 | Train PPL: 28.27
+	 Val. Loss: 4.86 |  Val. PPL: 128.83
+	 Current Val. bleu: 1.59 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 7
+  bleu-4 = 6.38 
+  ********************
+Epoch: 14 | Time: 4m5s
+	 Learning Rate: 0.001
+	 Train Loss: 3.45 | Train PPL: 31.46
+	 Val. Loss: 5.0 |  Val. PPL: 148.26
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 1
+  bleu-4 = 6.37 
+  ********************
+Epoch: 15 | Time: 4m3s
+	 Learning Rate: 0.001
+	 Train Loss: 3.45 | Train PPL: 31.36
+	 Val. Loss: 4.94 |  Val. PPL: 139.82
+	 Current Val. bleu: 6.37 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 2
+  bleu-4 = 6.38 
+  ********************
+Epoch: 16 | Time: 4m1s
+	 Learning Rate: 0.001
+	 Train Loss: 3.44 | Train PPL: 31.07
+	 Val. Loss: 5.08 |  Val. PPL: 160.09
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 3
+  bleu-4 = 6.39 
+  ********************
+Epoch: 17 | Time: 4m4s
+	 Learning Rate: 0.001
+	 Train Loss: 3.44 | Train PPL: 31.11
+	 Val. Loss: 5.25 |  Val. PPL: 190.86
+	 Current Val. bleu: 6.39 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 4
+  bleu-4 = 6.38 
+  ********************
+Epoch: 18 | Time: 4m3s
+	 Learning Rate: 0.001
+	 Train Loss: 3.44 | Train PPL: 31.09
+	 Val. Loss: 5.08 |  Val. PPL: 160.79
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 5
+  bleu-4 = 6.38 
+  ********************
+Epoch: 19 | Time: 4m5s
+	 Learning Rate: 0.001
+	 Train Loss: 3.43 | Train PPL: 30.91
+	 Val. Loss: 5.22 |  Val. PPL: 185.14
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 6
+  bleu-4 = 6.38 
+  ********************
+Epoch: 20 | Time: 4m7s
+	 Learning Rate: 0.001
+	 Train Loss: 3.42 | Train PPL: 30.61
+	 Val. Loss: 5.19 |  Val. PPL: 179.13
+	 Current Val. bleu: 6.38 |  Best bleu 6.39 |  Best Epoch 6
+	 Number of Epochs of no Improvement 7
+Test Loss: 4.51 | Test PPL: 91.07
+  bleu-4 = 7.33 
+  ********************
+Run completed at:- 
+Tue Dec  6 15:32:08 EST 2022

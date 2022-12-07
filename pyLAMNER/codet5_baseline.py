@@ -264,14 +264,14 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
               eos_token = tokenizer.eos_token, 
               lower = False, 
               #include_lengths = True,
-              fix_length = 256,
+              fix_length = 300,
               pad_token=tokenizer.pad_token, 
               unk_token=tokenizer.unk_token)
   TRG = Field(tokenize=tokenizer.tokenize,
               init_token = tokenizer.cls_token, 
               eos_token = tokenizer.eos_token,
               lower = False,
-              fix_length = 128,
+              fix_length = 30,
               pad_token=tokenizer.pad_token, 
               unk_token=tokenizer.unk_token)
   
@@ -387,5 +387,5 @@ def run_seq2seq(batch_size= 4, embedding_size= 512, hidden_dimension = 512, drop
   calculate_bleu(-1, data_path=path,output_dir=output_dir, p=p, test=True)
   
 
-run_seq2seq(batch_size = 64, embedding_size=512, epochs = 20, learning_rate = 0.001)
+run_seq2seq(batch_size = 128, embedding_size=512, epochs = 100, learning_rate = 0.01)
 

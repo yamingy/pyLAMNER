@@ -1,0 +1,46 @@
+ 
+ Nodelist:=  frappe
+ Number of nodes:=  1
+ GPUs per node:=  2,3
+ Ntasks per node:=  1
+
+Tue Dec  6 14:08:06 EST 2022
+1.7.0
+Is available: True
+Current Devices: 0
+No. of GPUs: 2
+preparing data....
+preparing vocab....
+preparing model....
+Setting Embeddings
+Maximum Input length is 6766... Maximum Output Length is 564
+Encoder Vocab Size 50004... Decoder Vocab Size 26732
+Batch Size:64
+Embedding Dimension:768
+The model has 129343084 trainable parameters
+
+Training Started.....
+  bleu-4 = 7.82 
+  ********************
+Epoch: 1 | Time: 5m13s
+	 Learning Rate: 0.01
+	 Train Loss: 6.79 | Train PPL: 885.58
+	 Val. Loss: 6.63 |  Val. PPL: 754.8
+	 Current Val. bleu: 7.82 |  Best bleu 7.82 |  Best Epoch 1
+	 Number of Epochs of no Improvement 0
+  bleu-4 = 8.42 
+  ********************
+Epoch: 2 | Time: 5m15s
+	 Learning Rate: 0.01
+	 Train Loss: 6.33 | Train PPL: 559.24
+	 Val. Loss: 6.55 |  Val. PPL: 701.91
+	 Current Val. bleu: 8.42 |  Best bleu 8.42 |  Best Epoch 2
+	 Number of Epochs of no Improvement 0
+  bleu-4 = 5.42 
+  ********************
+Epoch: 3 | Time: 5m9s
+	 Learning Rate: 0.01
+	 Train Loss: 6.26 | Train PPL: 525.74
+	 Val. Loss: 6.56 |  Val. PPL: 703.06
+	 Current Val. bleu: 5.42 |  Best bleu 8.42 |  Best Epoch 2
+	 Number of Epochs of no Improvement 1
